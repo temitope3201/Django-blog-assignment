@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html>
+    <head>
+        {% load static %}
+        <title> {% block title %} Django Blog {% endblock title %} </title>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
+        <link  href="https://fonts.googleapis.com/css2?family=Original+Surfer&display=swap" rel="stylesheet">
+
+    </head>
+
+    <body>
+        <header >
+            <div class="nav-left">
+                <h1><a href = " {% url 'home' %} " >  Django Blog </a></h1>
+            </div>
+            {% if user.is_authenticated %}
+            <div class="nav-right">
+                <h1><a href = " {% url 'post_new' %} " >  New Blog Post </a></h1>
+            </div>
+            {% endif %}
+        </header>
+        {% if user.is_authenticated %}
+            <p>Hi {{ user.username }}!</p>
+            <p> <a href="{% url 'logout' %}"> Log Out </a> </p>
+            <p> <a href="{% url 'password_change' %}">Change Your Password</a> </p>
+        {% else %}
+            <p>You are not logged in.</p>
+            <a href="{% url 'login' %}">Log In</a>
+            <a href="{% url 'signup' %}"> Sign Up </a>
+            
+        {% endif %}
+        <div>
+            {% block content %}
+            {% endblock  %}
+        </div>
+    </body>
+
+</html>

@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div  class='post-entry'></div>
+        <h2> {{post.title }} </h2>
+        <p> {{post.body}} </p>
+
+    </div>
+    {% if user == post.author %}
+    <a href=" {% url 'post_edit' post.pk %} " > Edit Blog Post </a>
+    <a href=" {% url 'post_delete' post.pk %} " > Delete Blog Post </a>
+    {% endif %}
+
+
+    <h4> TOP COMMENTS </h4>
+    <div class="card-footer">
+        {% for comment in post.comments.all %}
+            <p> <span class="font-weight-bold">{{ comment.author }} &middot; </span> {{ comment }} </p>
+        {% endfor %}
+    </div>
+
+    <h3>Leave a comment</h3>
+    <form method="post" style="margin-top: 1.3em;">
+        {{ form.as_p }}
+        {% csrf_token %}
+        <button type="submit" class="btn btn-primary  btn-lg">Submit</button>
+    </form>
+      
+
+{% endblock content %}
