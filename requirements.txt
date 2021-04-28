@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 .git
 .idea
 pages
@@ -18,5 +18,5 @@ crudclass
 db.sqlite3
 manage.py
 
->>>>>>> 1a1caa7738c2e26e0508fdca707c0fc44fd3c90e
+
 requirements.txt
